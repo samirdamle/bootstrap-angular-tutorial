@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap </title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body ng-controller="MainCtrl">
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#"><i class="fa fa-home fa-2x" style="color: red"></i></a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+                        <li><a href="../navbar-static-top/">Static top</a></li>
+                        <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
+        <div class="row">
+            <div class="col-sm-4 aqua">
+                {{name}}
+            </div>
+            <div class="col-sm-4 yellow">bbb
+            </div>
+            <div class="col-sm-4 lime">
+                aaa
+            </div>
+        </div>
+        <br><br>
+        <form>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <h2>Add User</h2>
+                    <div class="form-group">
+                        <select ng-model="user" ng-options="u as u.email for u in users">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <div><input id="name" type="name" size="40" required ng-model="user.name" check-blank></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+
+                        <div><input id="email" type="email" size="40" ng-model="user.email"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div><input id="password" type="password" size="40" required ng-model="user.password"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" ng-click="submit()">Add</button>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-shaded">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="u in users track by $index">
+                            <td>{{u.name}}</td>
+                            <td>{{u.email}}</td>
+                            <td>Administrator</td>
+                            <td>{{$index}}</td>
+                        </tr>
+                        <tr>
+                            <td>Samir Damle</td>
+                            <td>damlemail@gmail.com</td>
+                            <td>Administrator</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Samir Damle</td>
+                            <td>damlemail@gmail.com</td>
+                            <td>Administrator</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Samir Damle</td>
+                            <td>damlemail@gmail.com</td>
+                            <td>Administrator</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br><br><br>
+
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+        </div>
+    </div>
+
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script>
+    angular.module('app', []);
+
+    angular.module('app', []).factory('demoData', function () {
+
+        var users = [
+            {
+                name: 'Mary Smith',
+                email: 'marysmith@gmail.com'
+            },
+            {
+                name: 'Fred Miller',
+                email: 'fredmiller@gmail.com'
+            },
+            {
+                name: 'Sue Holland',
+                email: 'sueholland@gmail.com'
+            },
+            {
+                name: 'Brian Thompson',
+                email: 'brianthompson@gmail.com'
+            }
+        ];
+
+       return {
+           list: function () {
+               return users;
+           },
+           getUser: function (n) {
+               return users[n];
+           }
+       };
+    });
+
+    angular.module('app').controller('MainCtrl', ['$scope', '$http', 'demoData', function ($scope, $http, demoData) {
+        $scope.name = 'Jim Wales';
+
+        $scope.users = demoData.list();
+        $scope.user = demoData.getUser(1);
+
+        $scope.submit = function () {
+            var postObj = {
+                name: $scope.name,
+                email: $scope.email,
+                password: $scope.password
+            };
+
+            console.log(postObj);
+
+            $http.post('http://localhost:8000/users', postObj).then(function (data) {
+                console.log('Posted successfully');
+
+                    },
+                    function (err) {
+                        console.log('Failed to post');
+            });
+
+            $scope.name = '';
+            $scope.email = '';
+            $scope.password = '';
+        }
+    }]);
+
+    angular.module('app').directive('checkBlank', function () {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                // You may manipulate the HTML DOM here
+                if(scope.isBlank) {
+                    angular.element(elem).addClass('yellow');
+                }
+                else{
+                    angular.element(elem).removeClass('yellow');
+                }
+            },
+            controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+                // Only change $scope or other data here
+                // DO NOT manipulate the HTML DOM here
+                $scope.isBlank = true;
+
+                $element.on('keyup', function (e) {
+                    console.log($element[0]);
+                    if($element[0].value !== ''){
+                        $scope.isBlank = false;
+                    }
+                });
+
+            }]
+        };
+    });
+
+</script>
+</body>
+</html>
